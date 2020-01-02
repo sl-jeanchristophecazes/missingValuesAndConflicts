@@ -40,6 +40,16 @@ def hasNanAndInfValues(df):
 
 
     return(nanOrInfCols,hasNanDict)
+
+
+def missingValues(data):
+    total = data.isnull().sum().sort_values(ascending=False)
+    percent = (data.isnull().sum()/data.isnull().count()).sort_values(ascending=False)
+    missing_data = pd.concat([total,percent], axis=1, keys=['Total', 'Pourcentage'])
+    #Affiche que les variables avec des na
+    print (missing_data[(percent>0)],'\n' )
+
+
         
 
 
